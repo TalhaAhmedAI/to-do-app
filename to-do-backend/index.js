@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 const db = require("./models");
 app.use(bodyParser.json());
@@ -53,6 +54,8 @@ app.use((err, req, res, next) => {
     message: err.message || "there was an error proceeding request",
   });
 });
+
+app.use(cors());
 
 app.listen(PORT, () => {
   // listening on port 3000
