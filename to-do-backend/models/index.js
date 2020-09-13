@@ -5,3 +5,6 @@ mongoose.connect("mongodb://localhost/to-do-app", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+mongoose.set("debug", true); // enabling dubugging information to be printed to the console
+mongoose.Promise = Promise; // setting mongoose's Promise to use Node's Promise
