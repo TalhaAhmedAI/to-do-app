@@ -2,15 +2,17 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const PORT = process.env.PORT || 3000;
-const db = require("./models");
+const PORT = process.env.PORT || 3001;
+const db = require("./models/");
+
+app.use(cors());
 app.use(bodyParser.json());
 
 function success(res, payload) {
   return res.status(200).json(payload);
 }
 
-app.get("/todos", async (req, res, next) => {
+app.get("/", async (req, res, next) => {
   try {
     const todos = await db.Todo.find({});
     return success(res, todos);
@@ -55,9 +57,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.use(cors());
-
 app.listen(PORT, () => {
-  // listening on port 3000
+  // listening on port 3001
   console.log(`listening on port ${PORT}`);
 });
